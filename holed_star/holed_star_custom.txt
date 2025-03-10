@@ -1,0 +1,42 @@
+%
+O101
+(T1 -- 1/8 Endmill -- H1)
+(T4 -- 1/2 Endmill -- H4, D4)
+N10 G20
+N20 G00 G17 G40 G49 G90
+N30 T4 M06
+N40 G00 G90 G54 X-1.0 Y-1.0 S3056 M3 (Rapid to start position, clockwise spindle speed at 3056)
+N50 G43 H04 Z0.1 (Activate tool offset, rapid to Z=0.1)
+N60 G01 Z-0.1 F18.0
+N70 M08
+N80 G01 G41 D04 X0.0 Y-1.0 (Activate cutter compensation for tool 4, move to position A)
+N90 X0.0 Y0.0 (Position B)
+N100 X0.75 Y1.5 (Position C)
+N110 X0.0 Y2.0 (Position D)
+N120 X1.0 Y2.0 (Position E)
+N130 X1.5 Y3.0 (Position F)
+N140 X2.0 Y2.0 (Position G)
+N150 X3.0 Y2.0 (Position H)
+N160 X2.25 Y1.5 (Position I)
+N170 X3.0 Y0.0 (Position J)
+N180 X1.5 Y1.0 (Position K)
+N190 X-1.5 Y-1.0 (Position Z, clear part)
+N200 G40 X-1.0 Y-1.0 (Cancel Cutter compensation as you move to End position)
+N210 M09
+N220 G53 G00 Z0.0 M05 (Rapid to machine zero in Z, switch off spindle, review commands)
+N230 T1 M06 (Select and change to tool 1 for drilling)
+N240 G00 G90 G54 X1.5 Y1.6 S5000 M3 (Rapid to hole 1, Clockwise spindle speed of 5000)
+N250 G43 H01 Z0.1 (Activate tool 1 offset, rapid to Z=0.1)
+N260 M08
+N270 G99 G81 Z-0.25 R0.1 F7.0 (Drilling hole 1 with canned cycles at 7.0 IPM; Retract plane at Z=0.1)
+N280 X1.5 Y2.33 (Hole 2)
+N290 X2.42 Y1.83 (Hole 3)
+N300 X2.25 Y0.83 (Hole 4)
+N310 X0.75 Y0.83 (Hole 5)
+N320 X0.58 Y1.83 (Hole 6)
+N330 G90 M09 (Cancel canned drill cycle and turn off coolant)
+(--- Ending Section ---)
+N340 G00 G91 G28 Z0.0 (Machine zero positioning, rapid to machine zero in Z)
+N350 G28 X0.0 Y0.0 (Rapid to machine zero in X and Y)
+N360 M30 (End of program)
+%
